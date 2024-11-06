@@ -236,6 +236,11 @@ const contracts = {
                   name: "turnCounter",
                   type: "uint8",
                 },
+                {
+                  internalType: "uint256",
+                  name: "providerRandomNumber",
+                  type: "uint256",
+                },
               ],
               stateMutability: "view",
               type: "function",
@@ -293,7 +298,13 @@ const contracts = {
               type: "function",
             },
             {
-              inputs: [],
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "playerRandomNumber",
+                  type: "uint256",
+                },
+              ],
               name: "play",
               outputs: [],
               stateMutability: "payable",

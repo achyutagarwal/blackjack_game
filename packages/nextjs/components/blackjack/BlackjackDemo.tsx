@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Card, SkeletonCard, UnknownCard } from "./Cards";
 import { GameStatus } from "./GameStatus";
 import { getWeiToEther } from "./utils";
-import { TransactionReceipt } from "viem";
+import { TransactionReceipt, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { EtherInput } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
@@ -186,6 +186,7 @@ export const BlackjackDemo = () => {
     contractName: "BlackjackDemo",
     functionName: "play",
     // For payable functions, expressed in ETH
+    args: [BigInt(parseEther(betAmount.toString()).toString())],
     value: `${Number(betAmount)}`,
     gas: BigInt(4500000),
     onBlockConfirmation: txnReceipt => {
@@ -318,7 +319,7 @@ export const BlackjackDemo = () => {
                     <div className="flex flex-col gap-3 pb-4">
                       {newBetLimits && (
                         <>
-                          <div className="flex gap-1 gap-1 items-center">
+                          <div className="flex gap-1 items-center">
                             <span className="text-base font-light">Min Bet:</span>
                             <button className="btn btn-sm btn-ghost flex flex-col font-normal items-center hover:bg-transparent px-0 h-1.5 min-h-[0.375rem]">
                               <div className="flex items-center justify-center">
@@ -328,7 +329,7 @@ export const BlackjackDemo = () => {
                             </button>
                           </div>
 
-                          <div className="flex gap-1 gap-1 items-center">
+                          <div className="flex gap-1 items-center">
                             <span className="text-base font-light">Max Bet:</span>
                             <button className="btn btn-sm btn-ghost flex flex-col font-normal items-center hover:bg-transparent px-0 h-1.5 min-h-[0.375rem]">
                               <div className="flex items-center justify-center">
@@ -340,7 +341,7 @@ export const BlackjackDemo = () => {
                         </>
                       )}
                     </div>
-                    <div className="flex gap-1 gap-1 py-5 first:pt-0 last:pb-1 items-center">
+                    <div className="flex gap-1 py-5 first:pt-0 last:pb-1 items-center">
                       <EtherInput
                         value={`${Number(betAmount)}`}
                         onChange={handleInputChange}
@@ -390,7 +391,7 @@ export const BlackjackDemo = () => {
                     Withdraw
                   </div>
                   <div className="p-5 divide-y divide-base-300">
-                    <div className="flex gap-1 gap-1 py-5 first:pt-0 last:pb-1 items-center">
+                    <div className="flex gap-1 py-5 first:pt-0 last:pb-1 items-center">
                       <span className="text-base font-light">Balance:</span>
                       <button className="btn btn-sm btn-ghost flex flex-col font-normal items-center hover:bg-transparent px-0 h-1.5 min-h-[0.375rem]">
                         <div className="w-full flex items-center justify-center">

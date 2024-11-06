@@ -34,9 +34,12 @@
     "lint-staged": "^13.0.3"
   },
   "resolutions": {
-    "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm:^2.7.2#./.yarn/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
+    "usehooks-ts@^2.16.0": "patch:usehooks-ts@npm:^2.16.0#./.yarn/patches/usehooks-ts-npm-2.16.0.patch",
+    "usehooks-ts@2.16.0": "patch:usehooks-ts@npm%3A2.16.0#./.yarn/patches/usehooks-ts-npm-2.16.0-19f4c9b6b2.patch",
+    "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm%3A2.16.0#./.yarn/patches/usehooks-ts-npm-2.16.0-19f4c9b6b2.patch"
   },
   "dependencies": {
-    "@chainlink/contracts": "^0.6.1"
+    "@chainlink/contracts": "^0.6.1",
+    "usehooks-ts": "2.16.0"
   }
 }

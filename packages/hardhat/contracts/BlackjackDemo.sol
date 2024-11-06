@@ -240,10 +240,10 @@ function getVerificationStatus(address player) public view returns (bool) {
             gameInstance.gameStatus = "Lose";
         }
         // Automatically verify the seed after the game ends
-        bool isSeedValid = _verifySeed(gameInstance.generatedSeed, gameInstance.player);
+        _verifySeed(gameInstance.generatedSeed, gameInstance.player);
 
         // Emit event for seed verification
-        emit SeedVerified(player, gameInstance.generatedSeed, isSeedValid);
+        emit SeedVerified(player, gameInstance.generatedSeed, gameInstance.isSeedValid);
 
         emit Stand(gameInstance.player, gameInstance.playerHand, gameInstance.dealerHand, gameInstance.claimableAmount, gameInstance.dealerScore, gameInstance.playerScore, gameInstance.gameStatus);
 

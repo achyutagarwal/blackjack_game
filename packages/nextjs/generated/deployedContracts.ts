@@ -122,6 +122,31 @@ const contracts = {
                 },
                 {
                   indexed: false,
+                  internalType: "uint256",
+                  name: "seed",
+                  type: "uint256",
+                },
+                {
+                  indexed: false,
+                  internalType: "bool",
+                  name: "isValid",
+                  type: "bool",
+                },
+              ],
+              name: "SeedVerified",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "player",
+                  type: "address",
+                },
+                {
+                  indexed: false,
                   internalType: "uint8[2][]",
                   name: "playerHand",
                   type: "uint8[2][]",
@@ -241,6 +266,16 @@ const contracts = {
                   name: "providerRandomNumber",
                   type: "uint256",
                 },
+                {
+                  internalType: "uint256",
+                  name: "generatedSeed",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "isSeedValid",
+                  type: "bool",
+                },
               ],
               stateMutability: "view",
               type: "function",
@@ -272,6 +307,25 @@ const contracts = {
                   internalType: "uint256",
                   name: "",
                   type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "player",
+                  type: "address",
+                },
+              ],
+              name: "getVerificationStatus",
+              outputs: [
+                {
+                  internalType: "bool",
+                  name: "",
+                  type: "bool",
                 },
               ],
               stateMutability: "view",

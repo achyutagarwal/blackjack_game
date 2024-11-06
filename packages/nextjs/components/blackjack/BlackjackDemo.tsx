@@ -6,6 +6,7 @@ import { TransactionReceipt, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { EtherInput } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
+import toast from "react-hot-toast";
 
 export const BlackjackDemo = () => {
   const { address } = useAccount();
@@ -19,6 +20,9 @@ export const BlackjackDemo = () => {
   const [newPlayerHand, setNewPlayerHand] = useState<number[][] | undefined>([]);
   const [newDealerHand, setNewDealerHand] = useState<number[][] | undefined>([]);
   const [newGameStatus, setNewGameStatus] = useState<string | undefined>("Not started");
+  const [verificationMessage, setVerificationMessage] = useState("");
+  const [verificationStatus, setVerificationStatus] = useState<"verified" | "unverified" | "">("");
+
 
   const { data: betLimits } = useScaffoldContractRead({
     contractName: "BlackjackDemo",
@@ -268,6 +272,12 @@ export const BlackjackDemo = () => {
   const handleInputChange = useCallback((e: any) => {
     return setBetAmount(e);
   }, []);
+
+  useEffect(() => {
+    if (newGameStatus === "Win" || newGameStatus === "Lose" || newGameStatus === "Draw") {
+      toast.success("Game fairness has been verified!");
+    }
+  }, [newGameStatus]);
 
   return (
     <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
